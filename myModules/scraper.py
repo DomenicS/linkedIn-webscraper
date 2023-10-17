@@ -9,16 +9,13 @@ import pandas as pd
 from datetime import date  
 from datetime import datetime  
 import json  
-import pymysql  
-from sqlalchemy import create_engine  
-import sqlalchemy  
 import zlib  
 import numpy as np  
 import json  
 
 import os  
 
-os.chdir('c:/Users/Domen/IronHack/01_projects/IH_final_project_data-jobs')
+os.chdir('C:/Users/Domen/OneDrive/Projects/linkedIn-webscraper')
 print(os.getcwd())
 
 print(os.getcwd())
@@ -34,28 +31,6 @@ def import_keyword_list():  # Importing necessary libraries
     keywords["Keywords"] = keywords["Keywords"].str.replace(" ", "%20") # replace all spaces with %20 for thr URL
     keyword_list = keywords['Keywords'].tolist() # creating a list
     return keyword_list
-
-def connect_sql_database():
-    try:
-        with open("webscraper/sql_secret.txt", "r") as secret:
-            secret = secret.read()
-        connection_string = 'mysql+pymysql://root:'+secret+'@localhost/bank'
-        engine = create_engine(connection_string)
-        data = pd.read_sql_query('SELECT * FROM final_project.linked_in_scrap', engine)
-        return data 
-    except: 
-        print("Error connecting to mysql database.")
-        return None
-    
-def add_scrapped_df_to_sql_database(df):
-    try:
-        with open("webscraper/sql_secret.txt", "r") as secret:
-            secret = secret.read()
-        connection_string = 'mysql+pymysql://root:'+secret+'@localhost/bank'
-        engine = create_engine(connection_string)
-        df.to_sql('linked_in_scrap', engine, if_exists='append', index=False)
-    except: 
-        print("Error connecting to mysql database.")
 
 def initialize_empty_df():
     columns = ['id','title', 'company', 'city', 'posting_date', 'job_description', 'seniority_level', 'job_function', 'industries', 'scraping_date', 'url', 'keyword']

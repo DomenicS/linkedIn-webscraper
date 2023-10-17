@@ -1,0 +1,8 @@
+{
+    "temp_data_path" : "data/temp_data/",
+    "webscrap_data_path" : "data/webscrap_data/",
+    "cleaned_data_path" : "data/cleaned_data/",
+    "NLP_data_path" : "data/NLP_data/",
+    "sound_path" : "data/sound/",
+    "mode_path" : "data/model_data"
+}

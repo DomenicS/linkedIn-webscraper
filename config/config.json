@@ -4,5 +4,6 @@
     "cleaned_data_path" : "data/cleaned_data/",
     "NLP_data_path" : "data/NLP_data/",
     "sound_path" : "data/sound/",
-    "mode_path" : "data/model_data"
+    "mode_path" : "data/model_data",
+    "template_path" : "data/templates"
 }

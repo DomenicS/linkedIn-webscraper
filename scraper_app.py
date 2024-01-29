@@ -1,4 +1,6 @@
+
 import streamlit as st
+# from st_pages import Page, show_pages, add_page_title
 import json
 import os
 import pickle
@@ -8,6 +10,23 @@ import requests
 from myModules import scraper_v2 as mybib # importing own library
 from time import sleep
 from random import randint
+
+
+# st.set_page_config(
+#     page_title='Data Job App',
+#     layout='wide'
+# )
+# add_page_title()
+# show_pages(
+#     [
+#         Page("scraper_app.py", "Scraper", ''),
+#         Page("pages/02_job_search.py", "Job Search", ""),
+#         Page("pages/03_skills.py", "Top skills", ""),
+#         Page("pages/04_Trainer.py", "Premium Job Search", ""),
+#     ]
+# )
+
+
 
 with open("config/config.json", 'r') as f:
     config = json.load(f)
@@ -162,14 +181,13 @@ elif page == "Load Saved Settings":
                         scrap = {}
                         
                         if os.path.exists(f"{webscrap_data_path}{filename}.pkl"):
-                            st.write(f"Update {webscrap_data_path}{filename}.pkl")
                             with open(f"{webscrap_data_path}{filename}.pkl", "rb") as file:
                                 scrap = pickle.load(file)
                             scrap.update(temp_scrap)
                             with open(f"{webscrap_data_path}{filename}.pkl", "wb") as file:
                                 pickle.dump(scrap, file)
                         else:
-                            st.write(f"Create {webscrap_data_path}{filename}.pkl")
+                            progress_text.text(f"Create {webscrap_data_path}{filename}.pkl")
                             scrap.update(temp_scrap)
                             with open(f"{webscrap_data_path}{filename}.pkl", "wb") as file:
                                 pickle.dump(scrap, file)
